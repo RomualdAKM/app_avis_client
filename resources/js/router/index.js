@@ -15,6 +15,7 @@ import postesEdit from '../pages/views/postes/edit.vue'
 //employés
 import employesCreate from '../pages/views/employes/create.vue'
 import employesIndex from '../pages/views/employes/index.vue'
+import employesQrcodeuser from '../pages/views/employes/qrcodeuser.vue'
 
 
 
@@ -88,6 +89,13 @@ const routes = [
     {
         path: '/employes',
         component: employesIndex,
+        
+    },
+    {
+        name: 'QrcodeUser',
+        path: '/employes/qrcode/:userId',
+        component: employesQrcodeuser,
+        props: true,
         
     },
 

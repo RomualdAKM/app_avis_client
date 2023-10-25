@@ -49,7 +49,8 @@ Route::controller(JobController::class)->group(function(){
 });
 Route::controller(UserController::class)->group(function(){
 
-    // Route::get('jobs','jobs');
+    Route::get('users','users');
+    Route::get('get_qrcodeuser/{id}','get_qrcodeuser');
     // Route::get('get_job/{id}','get_job');
     // Route::get('delete_job/{id}','delete_job');
     Route::post('create_user','create_user');

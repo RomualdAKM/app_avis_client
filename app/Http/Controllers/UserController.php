@@ -38,15 +38,11 @@ class UserController extends Controller
             );
         }
        
-        // Generate QR code
-        $text = "Je suis un QR Code";
-        $qrcode = QrCode::size(200)->generate($text);
-
-        // Save QR code as an image
-        $imagePath = public_path('codes-qr/') . 'qrcode.png';
-       
-            QrCode::format('png')->size(200)->useImagick()->generate($text, $imagePath);
+        // Generate the QR code with the email as the filename
+        $email = $request->email;
         
+        $qrcode = QrCode::size(200)->generate("https://www.akilischool.com", public_path("codes-qr/$email.svg"));
+
         $user = new User();
         $user->name = $request->name;
         $user->firstname = $request->firstname;       
@@ -55,6 +51,7 @@ class UserController extends Controller
         $user->adresse = $request->adresse;       
         $user->password = $request->phone;       
         $user->role = 'user';       
+        $user->qrcode = "$email.svg";       
         $user->company_id = $users->company_id;       
         $user->job_id = $users->job_id;       
         $user->save();
@@ -68,5 +65,17 @@ class UserController extends Controller
             200
         );
 
+    }
+
+    public function users(){
+        $users = User::all();
+        return response($users, 200);
+    }
+
+
+    public function get_qrcodeuser($id){
+        $qrcodeuser = User::where('id',$id)->first('qrcode');
+        //dd($qrcodeuser);
+        return response($qrcodeuser, 200);
     }
 }
