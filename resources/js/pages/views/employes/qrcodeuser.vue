@@ -24,12 +24,12 @@ onMounted( async () => {
 
 <template>
 
-
     <div class="flex justify-center items-center h-screen">
     <img
       :src="'/codes-qr/' + qrcodeuser.qrcode"
       alt="QR Code"
       class="mx-auto w-48" 
+      style="height: 60ù;"
     >
     <a
       :href="'/codes-qr/' + qrcodeuser.qrcode"
