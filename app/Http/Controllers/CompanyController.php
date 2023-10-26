@@ -67,7 +67,16 @@ class CompanyController extends Controller
 
 
         public function get_structure($id){
+           // dd($id);
+            $company = Company::find($id);
+            //dd($company);
 
+            return response()->json([
+                'company' => $company
+            ]);
+        }
+        public function get_info_structure($id){
+           //dd($id);
             $company = Company::find($id);
             //dd($company);
 

@@ -1,3 +1,41 @@
+<script setup>
+import { ref, onMounted, reactive } from 'vue'
+
+
+let companyId = ref({})
+const company = ref([])
+
+
+const fetchUserData = async () => {
+  try {
+    const response = await axios.get('/api/user', {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            });
+          
+            companyId.value = response.data.company_id
+            console.log(companyId.value)
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données de l\'utilisateur :', error)
+      }
+    }
+
+    const getCompany = async () => {
+    let response = await axios.get(`/api/get_info_structure/${companyId.value}`)
+    company.value = response.data.company
+    console.log('company',response.data.company)
+}
+
+onMounted ( async () => {
+  
+  fetchUserData()
+  getCompany()
+})
+
+</script>
+
+
 <template>
      <!-- Page Header start-->
      <header class="fixed top-0 z-[6] xl:w-full 4xl:w-[calc(100%_-_14.375rem)] w-[calc(100%_-_15.8125rem)] ml-auto">
@@ -9,7 +47,7 @@
                     <use href="https://admin.pixelstrap.com/govo/assets/svg/sprite.svg#Category"> </use>
                   </svg>
                 </button>
-                <h1 class="flex items-center gap-1 text-xl font-extrabold leading-none sm:hidden dark:text-white 4xl:text-lg">Unique</h1>
+                <h1 class="flex items-center gap-1 text-xl font-extrabold leading-none sm:hidden dark:text-white 4xl:text-lg">Bienvenu sur votre espace </h1>
               </div>
               <div class="right-header flex items-center flex-1 sm:gap-[calc(7px_+_(14_-_7)_*_((100vw_-_320px)_/_(1920_-_320)))] gap-[calc(16px_+_(20_-_16)_*_((100vw_-_320px)_/_(1920_-_320)))]  justify-end">
                
@@ -31,7 +69,7 @@
                       </div>
                       <div class="dropdown-menu !min-w-[170px]"> 
                         <ul class="flex flex-col gap-3"> 
-                          <li><a class="flex items-center gap-2 text-title" href="user-profile.html">
+                          <!-- <li><a class="flex items-center gap-2 text-title" href="user-profile.html">
                               <svg class="w-[18px] h-[18px] stroke-title dark:stroke-white"> 
                                 <use href="https://admin.pixelstrap.com/govo/assets/svg/sprite.svg#2-User"> </use>
                               </svg>Profile Setting</a></li>
@@ -46,7 +84,7 @@
                           <li><a class="flex items-center gap-2 text-title" href="knowledgebase.html">
                               <svg class="w-[18px] h-[18px] stroke-title dark:stroke-white"> 
                                 <use href="https://admin.pixelstrap.com/govo/assets/svg/sprite.svg#Shield-Done"> </use>
-                              </svg>Help</a></li>
+                              </svg>Help</a></li> -->
                           <li><a class="flex items-center gap-2 text-title" href="javascript:void(0)">
                               <svg class="w-[18px] h-[18px] stroke-title dark:stroke-white"> 
                                 <use href="https://admin.pixelstrap.com/govo/assets/svg/sprite.svg#Login"> </use>

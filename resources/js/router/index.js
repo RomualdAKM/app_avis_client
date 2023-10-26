@@ -16,7 +16,11 @@ import postesEdit from '../pages/views/postes/edit.vue'
 import employesCreate from '../pages/views/employes/create.vue'
 import employesIndex from '../pages/views/employes/index.vue'
 import employesQrcodeuser from '../pages/views/employes/qrcodeuser.vue'
+//questions
 
+import questionsIndex from '../pages/views/questions/index.vue'
+import questionsCreate from '../pages/views/questions/create.vue'
+ import questionsEdit from '../pages/views/questions/edit.vue'
 
 
 const routes = [
@@ -95,6 +99,24 @@ const routes = [
         name: 'QrcodeUser',
         path: '/employes/qrcode/:userId',
         component: employesQrcodeuser,
+        props: true,
+        
+    },
+    //questions
+    {
+        path: '/questions',
+        component: questionsIndex,
+        
+    },
+    {
+        path: '/questions/create',
+        component: questionsCreate,
+        
+    },
+    {
+        name: 'EditQuestion',
+        path: '/questions/editquestionId',
+        component: questionsEdit,
         props: true,
         
     },

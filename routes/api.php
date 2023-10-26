@@ -6,6 +6,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::controller(CompanyController::class)->group(function(){
 
     Route::get('structures','structures');
     Route::get('get_structure/{id}','get_structure');
+    Route::get('get_info_structure/{id}','get_info_structure');
     Route::get('delete_structure/{id}','delete_structure');
     Route::post('create_company','create_company');
     Route::post('edit_structure/{id}','edit_structure');
@@ -58,3 +60,11 @@ Route::controller(UserController::class)->group(function(){
    
 });
 
+Route::controller(QuestionController::class)->group(function(){
+    Route::post('create_question','create_question');
+    Route::post('edit_question/{id}','edit_question');
+    Route::get('questions','questions');
+    Route::get('delete_question/{id}','delete_question');
+    Route::get('get_question/{id}','get_question');
+
+});
